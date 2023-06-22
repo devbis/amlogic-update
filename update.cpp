@@ -678,8 +678,8 @@ int update_sub_cmd_identify_host (AmlUsbRomRW &rom, int idLen, char *id) {
   printf("This firmware version is ");
   bool fw_ver_check_error = true;
   for (int dataPtr = 0; dataPtr < dataLen; dataPtr++) {
-    printf("%d%c", id[dataPtr], dataPtr + 1 >= dataLen ? '\n' : '-');
-    if (dataPtr <= 3 && id[dataPtr] != '\0') {
+    printf("%d%c", rom.buffer[dataPtr], dataPtr + 1 >= dataLen ? '\n' : '-');
+    if (dataPtr <= 3 && rom.buffer[dataPtr] != '\0') {
       fw_ver_check_error = false;
     }
   }
@@ -689,12 +689,12 @@ int update_sub_cmd_identify_host (AmlUsbRomRW &rom, int idLen, char *id) {
     return -777;
   }
 
-  if (id[3] == 0) {
-    if (id[4] == 1 && idLen > 5) {
-      printf("Need Password...Password check %s\n", id[5] == 1 ? "OK" : "NG");
+  if (rom.buffer[3] == 0) {
+    if (rom.buffer[4] == 1 && idLen > 5) {
+      printf("Need Password...Password check %s\n", rom.buffer[5] == 1 ? "OK" : "NG");
     }
     if (id[7] && idLen > 7) {
-      printf("SupportedPageMap--\t map 6 0x%02x, map 7 0x%02x\n", id[6], id[7]);
+      printf("SupportedPageMap--\t map 6 0x%02x, map 7 0x%02x\n", rom.buffer[6], rom.buffer[7]);
     }
   }
   return 0;
