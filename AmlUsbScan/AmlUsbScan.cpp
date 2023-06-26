@@ -80,7 +80,7 @@ int aml_scan_usbdev (char **candidate_devices) {
   return result;
 }
 
-int aml_send_command (void *device, char *mem_type, int retry, char *reply) {
+int aml_send_command (void *device, const char *mem_type, int retry, char *reply) {
   unsigned int data_len;
   char buffer[128] = {};
   memcpy(buffer, mem_type, strlen(mem_type));

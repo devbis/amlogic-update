@@ -228,6 +228,7 @@ int usbDeviceIoControl (AmlUsbDrv *drv, unsigned int control_code, void *in_buf,
       return IOCTL_RUN_IN_ADDR_Handler(ctrl);
     case 0x80002010:
       readOrWrite = 1;
+      [[fallthrough]];
     case 0x80002014:
       return IOCTL_DO_LARGE_MEM_Handler(ctrl, readOrWrite);
     case 0x80002018:

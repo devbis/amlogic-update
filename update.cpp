@@ -999,7 +999,7 @@ int main (int argc, const char **argv) {
           puts("AmlGetUpdateComplete error");
         } else {
           // printf("AmlGetUpdateComplete = %s  %lu\n", buffer, rom.device);
-          printf("AmlGetUpdateComplete = %s  %lu\n", buffer, 0);
+          printf("AmlGetUpdateComplete = %s  %d\n", buffer, 0);
         }
       }
       if (!strcmp(cmd, "msset")) {
@@ -1330,7 +1330,7 @@ int DownloadProgressInfo::update_progress (unsigned int dataLen) {
   fflush(stdout);
   if ((unsigned int) (max_1_4k_div_total_mul_100 + percentage) >= percentage_100) {
     printf("\b\b\b\b\b\b\b\b\b\r");
-    printf("[%s]OK:<%ld>MB in <%u>Sec\n", prompt, nBytes >> 20,
+    printf("[%s]OK:<%ld>MB in <%ld>Sec\n", prompt, nBytes >> 20,
            (timeGetTime() - startTime) / 1000);
   }
   return 0;
